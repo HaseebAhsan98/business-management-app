@@ -75,8 +75,10 @@ export function PartiesClient({ initialParties, areas }: PartiesClientProps) {
 
   async function handleNameBlur() {
     if (nameInput.trim() && areaInput) {
-      const duplicates = await checkDuplicateParty(nameInput, areaInput);
-      setDuplicateWarning(duplicates.filter((d) => d.id !== editingParty?.id));
+      const duplicates: any = await checkDuplicateParty(nameInput, areaInput);
+      if (Array.isArray(duplicates)) {
+        setDuplicateWarning(duplicates.filter((d: any) => d.id !== editingParty?.id));
+      }
     }
   }
 
